@@ -20,10 +20,11 @@
 
 
   class Menu{
-      private $players = [];
+      private $players = ["ade", "test"];
       
       public function main() {
-        echo '# ============================== #
+        echo '
+        # ============================== #
         # Welcome to the Battle Arena #
         # ------------------------------------------------- ---- #
         # Description: #
@@ -40,7 +41,8 @@
              break;
            case "start": echo $this->start();
              break;
-           default: echo "wrong input!!!"; echo $this->main();
+           default: echo "wrong input!!!\n";
+           echo $this->main();
          } //(strcmp($input, "new" )) {
 //            echo $this->add_player();
   //        } elseif (strcmp($input, "start" )){
@@ -72,10 +74,10 @@
         # Battle Start #';
         echo '
         who will attack =';
-        return $this->player;
+        return $this->player["ade"];
         echo '
         who attacked';
-        return $this->player;
+        return $this->player["test"];
       }
     }
 } 
