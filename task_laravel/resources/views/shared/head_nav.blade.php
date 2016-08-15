@@ -7,7 +7,7 @@
         <span class="icon-bar"/>
         <span class="icon-bar"/>
       </button>
-      <a href="{{url('home')}}" class = "navbar-brand">Ade Bayu Martin</a>
+      <a href="{{url('/articles')}}" class = "navbar-brand">Ade Bayu Martin</a>
     </div>
     <div class="collapse navbar-collapse">
     <ul class="nav navbar-nav navbar-right">

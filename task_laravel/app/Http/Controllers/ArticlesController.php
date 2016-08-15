@@ -1,12 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-
+//require 'venodor/autoload.php';
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
-
 use App\Article;
+use Validator, Session;
+use App\Http\Controllers\Redirect;
+use Intervention\Image\ImageManager;
+
+
 
 class ArticlesController extends  Controller
 {
@@ -16,7 +19,7 @@ class ArticlesController extends  Controller
     
     public function index(){
         $articles = Article::all();
-        return view ('article.index')
+        return view ('articles.index')
             ->with('articles', $articles);
     }
 
@@ -26,31 +29,31 @@ class ArticlesController extends  Controller
     }
 
 
-    public function store(){
-        $$validate = Validator::make($request->all(), Article::valid());
-        if ($validate->fails()) {
+    public function store(Request $request){
+        $validate = Validator::make($request->all(), Article::valid());
+            if($validate->fails()) {
             return back()
             ->withErrors($validate)
             ->withInput();
         } else {
             Article::create($request->all());
             Session::flash('notice', 'Success add article');
-            return Redirect::to('articles');
+            return redirect ('articles');
         }
     }
 
 
     public function show($id){
-        $articles = Article::find($id);
-        return view('article.show')
-            ->with('article', $articles);
+        $article = Article::find($id);
+        return view('articles.show')
+            ->with('article', $article);
     }
 
 
     public function edit($id){
-        $articles = Article::find($id);
-        return view('article.edit')
-            ->with('article', $articles);
+        $article = Article::find($id);
+        return view('articles.edit')
+            ->with('article', $article);
     }   
 
 
@@ -63,8 +66,8 @@ class ArticlesController extends  Controller
         } else {
             $article = Article::find($id);
             $article->update($request->all());
-            Session::Flash('notoce', 'Success update article');
-            return Redirect::to('articles');
+            Session::Flash('notice', 'Success update article');
+            return redirect ('articles');
         }
     }
 
@@ -73,10 +76,10 @@ class ArticlesController extends  Controller
         $article = Article::find($id);
         if ($article->delete()) {
             Session::flash('notice', 'Article success delet');
-            return Redirect::to('articles');
+            return redirect ('articles');
         } else {
             Session::flash('error', 'Article fails delete');
-            return Redirect::to('articles');
+            return redirect ('articles');
         }
     }
 }
