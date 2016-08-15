@@ -11,9 +11,9 @@
     </div>
     <div class="collapse navbar-collapse">
     <ul class="nav navbar-nav navbar-right">
-      <li>Home</li>
-      <li>Gallery</li>
-      <li>Article</li>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Gallery</a></li>
+      <li><a href="#">Article</a></li>
     </ul>
     </div>
   </div>

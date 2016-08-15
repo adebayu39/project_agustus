@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Article;
-use Validator, Session;
+use Validator, Session, Input, File;
 use App\Http\Controllers\Redirect;
 use Intervention\Image\ImageManager;
+use App\Repositories\ImageRepository;
 
 
 
@@ -31,12 +32,17 @@ class ArticlesController extends  Controller
 
     public function store(Request $request){
         $validate = Validator::make($request->all(), Article::valid());
+        //$validate = Image::make($_FILE['image']['tmp_name']), Article::valid();
             if($validate->fails()) {
             return back()
             ->withErrors($validate)
             ->withInput();
         } else {
             Article::create($request->all());
+            $image = $request->file('image');
+            $name = $image->getClientOriginalName();
+            $path = public_path("/image/$name");
+            Storage::put($path, File::get(getRealPath()));
             Session::flash('notice', 'Success add article');
             return redirect ('articles');
         }

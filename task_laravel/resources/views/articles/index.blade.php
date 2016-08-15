@@ -3,6 +3,7 @@
   <div>{!! link_to('articles/create', 'Write Article', array('class' => 'btn btn-success')) !!}</div>
   @foreach ($articles as $article)
     <div>
+      <img src="{{$article->image}}">
       <h1>{{$article->title}}</h1>
       <p>{{$article->content}}</p>
       <i>By {{$article->author}}</i>
