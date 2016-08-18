@@ -29,10 +29,10 @@
   </div>
 
   <div class="form-group">
-    {!! Form::label('image', 'Upload Image', array('class' => 'col-lg-3 control-label')) !!}
+    {!! Form::label('photo', 'Upload Image', array('class' => 'col-lg-3 control-label')) !!}
     <div class="col-lg-9">
-      {!! Form::file('image', null, array('class' => 'form-control')) !!}
-      {!! $errors->first('image') !!}
+      {!! Form::file('photo', null, array('class' => 'form-control')) !!}
+      {!! $errors->first('photo') !!}
     </div>
     <div class="clear"></div>
   </div>  

@@ -1136,6 +1136,7 @@ two columns for large devices
   padding-top: 0.2em;
   text-align: center;
   font-size: 1.1rem;
+  float:left;
 }
 
 /* ---- stamp ---- */
@@ -1145,7 +1146,7 @@ two columns for large devices
 /* ---- grid--fixed-width ---- */
 
 .grid--fixed-width {
-  width: 320px;
+  width: 150px;
 }
 
 /* grid-image-item
@@ -1167,14 +1168,10 @@ two columns for large devices
 ------------------------- */
 
 .grid-item {
-  width: 80px;
-  height: 60px;
+  width: 300px;
+  height: 200px;
   float: left;
-  background: #D26;
-  border: 2px solid #333;
-  border-color: hsla(0, 0%, 0%, 0.5);
-  border-radius: 5px;
-}
+  }
 
 .grid-item--width2 { width:  160px; }
 .grid-item--width3 { width:  240px; }
@@ -1182,7 +1179,7 @@ two columns for large devices
 .grid-item--height2 { height: 100px; }
 .grid-item--height3 { height: 140px; }
 .grid-item--height4 { height: 180px; }
-
+.grid-item--height5 { height: 300px; }
 .grid-item--gigante {
   width: 240px;
   height: 180px;
@@ -1411,7 +1408,6 @@ two columns for large devices
   position: relative; /* gonna abs */
   display: block;
   padding: 0px;
-  background: #E8E5E2;
   border-radius: 5px;
   color: #D26;
 }

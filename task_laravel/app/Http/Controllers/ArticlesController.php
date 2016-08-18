@@ -1,18 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
-//require 'venodor/autoload.php';
+//require 'vendor/autoload.php';
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Article;
-use Validator, Session, Input, File;
+use Validator, Session, Input, File, Image;
 use App\Http\Controllers\Redirect;
 use Intervention\Image\ImageManager;
 use App\Repositories\ImageRepository;
 
 
 
-class ArticlesController extends  Controller
+class ArticlesController extends Controller
 {
    function __construct(){
 
@@ -31,6 +31,8 @@ class ArticlesController extends  Controller
 
 
     public function store(Request $request){
+        //dd($request->file('image'));
+        
         $validate = Validator::make($request->all(), Article::valid());
         //$validate = Image::make($_FILE['image']['tmp_name']), Article::valid();
             if($validate->fails()) {
@@ -38,14 +40,38 @@ class ArticlesController extends  Controller
             ->withErrors($validate)
             ->withInput();
         } else {
-            Article::create($request->all());
-            $image = $request->file('image');
-            $name = $image->getClientOriginalName();
-            $path = public_path("/image/$name");
-            Storage::put($path, File::get(getRealPath()));
+            try{
+            $add = new Article();
+            $add->title = $request['title'];
+            $add->content = $request['content'];
+            $add->author = $request['author'];
+            $photo = $request->file('photo');
+            $image_location = public_path().'/upload/image/';
+            $name = $photo->getClientOriginalName();
+            $request->file('photo')->move($image_location, $name);
+            //dd($request->all());
+            //$name_db = $photo->getFilename();
+            $add->photo=$name;
+            $add->save();
+            
+            //$request->save();
+            //Article::create($request->all());
+            if(!File::exists($image_location)){
+              File::makeDirectory($image_location, $mode=0777, true, true);
+            }
+            //$img = Image::make($image);
+            //$img->save($image_location, $name);            
             Session::flash('notice', 'Success add article');
+
+            //$add->image = $name;
             return redirect ('articles');
-        }
+
+          } catch(\Exception $e) {
+            dd($e);
+          }
+  
+      }
+
     }
 
 
