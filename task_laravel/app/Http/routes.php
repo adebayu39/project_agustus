@@ -11,8 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Controller@index');
+
+Route::get('article/{id}', 'Controller@show');
 
 Route::resource('articles', 'ArticlesController');
+
+Route::auth();
+
+//Route::get('/home', 'HomeController@index');

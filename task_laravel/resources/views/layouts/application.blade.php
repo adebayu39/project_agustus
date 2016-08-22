@@ -13,13 +13,11 @@
 	
 </head>
 
+<body style="padding-top: 100px;">
+
 	<script src="/assets/js/jquery-3.1.0.min.js"></script>
 	<script src="/assets/js/bootstrap.min.js"></script>
-	<script src="/assets/js/materialize.min.js"></script>
-	<script src="/assets/js/masonry-docs.min.js"></script>
-
-
-<body style="padding-top: 60px;">
+	<script src="/assets/js/custom.js"></script>
 
 <!-- Navigation -->
 @include('shared.head_nav')
@@ -41,7 +39,8 @@
 		</div>	
 	</div>
 
-	
+	<script src="/assets/js/materialize.min.js"></script>
+	<script src="/assets/js/masonry-docs.min.js"></script>	
 	
 </body>
 </html>

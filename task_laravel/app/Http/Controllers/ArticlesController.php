@@ -15,14 +15,14 @@ use App\Repositories\ImageRepository;
 class ArticlesController extends Controller
 {
    function __construct(){
-
+        $this->middleware('auth');
     }
     
     public function index(){
-        $articles = Article::all();
-        return view ('articles.index')
+        $articles = Article::orderBy('id', 'DESC')->paginate(6);//=>toJson();
+           return view ('articles.index')
             ->with('articles', $articles);
-    }
+          }
 
 
     public function create(){
@@ -96,8 +96,21 @@ class ArticlesController extends Controller
             ->withErrors($validate)
             ->withInput();
         } else {
-            $article = Article::find($id);
-            $article->update($request->all());
+            $update = Article::where('id',$id)->first();
+            $update->title = $request['title'];
+            $update->content = $request['content'];
+            $update->author = $request['author'];            
+            if($request->file('photo') == ""){
+                $update->photo = $update->photo;
+            } else {
+                $photo = $request->file('photo');
+                $image_location = public_path().'/upload/image/';
+                $name = $photo->getClientOriginalName();
+                $request->file('photo')->move($image_location, $name);
+                $update->photo = $name;  
+            }
+            
+            $update->update();
             Session::Flash('notice', 'Success update article');
             return redirect ('articles');
         }
@@ -107,10 +120,10 @@ class ArticlesController extends Controller
     public function destroy($id){
         $article = Article::find($id);
         if ($article->delete()) {
-            Session::flash('notice', 'Article success delet');
+            Session::flash('notice', 'Article deleted');
             return redirect ('articles');
         } else {
-            Session::flash('error', 'Article fails delete');
+            Session::flash('error', 'Article fails to delete');
             return redirect ('articles');
         }
     }

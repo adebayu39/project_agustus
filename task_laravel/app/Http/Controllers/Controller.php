@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -11,4 +12,16 @@ use Illuminate\Foundation\Auth\Access\AuthorizesResources;
 class Controller extends BaseController
 {
     use AuthorizesRequests, AuthorizesResources, DispatchesJobs, ValidatesRequests;
+
+    public function index(){
+		    		$articles = Article::orderBy('id', 'DESC')->paginate(6);
+		        return view ('welcome')
+		            ->with('articles', $articles);
+    }
+
+    public function show($id){
+        $article = Article::find($id);
+        return view('articles.show')
+            ->with('article', $article);
+    }
 }
