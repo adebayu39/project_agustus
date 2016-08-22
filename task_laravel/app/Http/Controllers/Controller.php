@@ -21,7 +21,15 @@ class Controller extends BaseController
 
     public function show($id){
         $article = Article::find($id);
-        return view('articles.show')
+        return view('guest_show')
             ->with('article', $article);
     }
+
+    public function store(Request $request){
+    				$add = new Comment();
+            $add->comment = $request['comment'];
+            $add->name = $request['name'];
+            $add->save();
+    }
+
 }
