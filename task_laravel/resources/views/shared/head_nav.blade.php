@@ -1,16 +1,16 @@
 <div class="navbar navbar-fixed-top navbar-default" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      {{-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"/>
         <span class="icon-bar"/>
         <span class="icon-bar"/>
-      </button>
+      </button> --}}
       @if (Auth::guest())
         <a href="{{url('/')}}" class = "navbar-brand">Home</a>
       @else
-        <a href="{{url('articles')}}" class = "articles_link">Home</a>
+        <a href="{{url('articles')}}" class = "navbar-brand">Home</a>
       @endif
     </div>
     <div class="collapse navbar-collapse">

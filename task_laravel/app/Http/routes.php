@@ -15,6 +15,8 @@ Route::get('/', 'Controller@index');
 
 Route::get('article/{id}', 'Controller@show');
 
+Route::resource('comments', 'CommentsController');
+
 Route::resource('articles', 'ArticlesController');
 
 Route::auth();

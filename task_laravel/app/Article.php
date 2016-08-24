@@ -18,6 +18,11 @@ class Article extends Model
         'author' => 'required',
       );
     }
+
+    public function comments() {
+      return $this->hasMany('App\Comment', 'article_id');
+    }
+    
   
 
    

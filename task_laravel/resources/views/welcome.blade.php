@@ -1,14 +1,14 @@
 @extends("layouts.application")
 @section("content")
-<div class="col-md-12 search">
-    <div class="col-md-6">
+  <div class="col-md--offset-12 search">
+    <div class="col-md-offset-8">
       <div class="input-group input-group-sm">
-        <input type="text" class="form-control" id="keywords" placeholder="Keywords">
-        <span class="input-group-btn">
-        <button id="search" class="btn btn-info btn-flat" type="button">
-          Search!
-        </button>
-        </span>
+          <input type="text" class="form-control" id="keywords" placeholder="Search">
+          <span class="input-group-btn">
+          <button id="search" class="btn btn-info btn-flat" type="button">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+          </span>
       </div><!-- /input-group -->
     </div>
   </div>
@@ -19,7 +19,7 @@
   @foreach ($articles as $article)
         <div class="boxed">
             <a href="{{ url('article/'.$article->id) }}">
-                <img src="{{ asset('upload/image/'.$article->photo) }}" width="150">
+                <img src="{{ asset('upload/image/'.$article->photo) }}" width="250">
             </a>
             <p><a href="{{ url('articles/'.$article->id) }}">{{substr($article->title, 0, 20)}} </a></p>
       
@@ -28,15 +28,16 @@
             
             </div>
   @endforeach
-  {!! $articles->render() !!}
+  
 
   </div>
   </div>
 
+{!! $articles->render() !!}
 <script>
 $('#search').on('click', function(){
   $.ajax({
-    url : '/articles',
+    url : '/article',
     type : 'GET',
     dataType : 'json',
     data : {
