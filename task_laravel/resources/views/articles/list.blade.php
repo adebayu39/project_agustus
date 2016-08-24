@@ -4,7 +4,7 @@
           <div class="content-columns">
   @foreach ($articles as $article)
         <div class="boxed">
-          <img src="{{ asset('upload/image/'.$article->photo) }}" width="150">
+          <img src="{{ asset('upload/image/'.$article->id.'/'.$article->photo) }}" width="150">
             <p>{{$article->title}}</p>
       
             <p>{{ substr($article->content, 0, 20)}}</p>
@@ -17,7 +17,9 @@
           </div>
   @endforeach
   
-  {!! $articles->render() !!}
+  
 
   </div>
   </div>
+
+  {!! $articles->render() !!}

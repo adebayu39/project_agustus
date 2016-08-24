@@ -17,7 +17,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, AuthorizesResources, DispatchesJobs, ValidatesRequests;
 
-    public function index(Request $request){
+    public function index(){
       try {
           if($request->ajax()) {
             if($request->keywords) {

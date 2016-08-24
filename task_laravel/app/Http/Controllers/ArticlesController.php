@@ -46,19 +46,19 @@ class ArticlesController extends Controller
             $add->content = $request['content'];
             $add->author = $request['author'];
             $photo = $request->file('photo');
-            $image_location = public_path().'/upload/image/';
             $name = $photo->getClientOriginalName();
-            $request->file('photo')->move($image_location, $name);
-            //dd($request->all());
-            //$name_db = $photo->getFilename();
             $add->photo=$name;
             $add->save();
-            
-            //$request->save();
-            //Article::create($request->all());
+            $image_location = public_path().'/upload/image/'.$add->id;
             if(!File::exists($image_location)){
               File::makeDirectory($image_location, $mode=0777, true, true);
             }
+            $request->file('photo')->move($image_location, $name);
+
+            //dd($request->all());
+            //$name_db = $photo->getFilename();
+            //$request->save();
+            //Article::create($request->all());
             //$img = Image::make($image);
             //$img->save($image_location, $name);            
             Session::flash('notice', 'Success add article');
