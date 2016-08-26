@@ -1,5 +1,12 @@
-$('.article_link').click(function(e){
+$(document).on('click','.article-list',(function(e){
     e.preventDefault();
+    var page = $(this).attr('href').split('articles');
+
+    getArticles(page);
+
+}));
+
+function getArticles(page){
     $.ajax({
       url:'/articles',
       type:"GET",
@@ -13,4 +20,5 @@ $('.article_link').click(function(e){
         console.log(xhr.error);
       }
     });
-  });
+
+  }

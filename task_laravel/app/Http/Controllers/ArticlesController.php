@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Article;
-use Validator, Session, Input, File, Image;
+use App\Comment;
+use Validator, Session, Input, File, Image, Storage;
 use App\Http\Controllers\Redirect;
 use Intervention\Image\ImageManager;
 use App\Repositories\ImageRepository;
@@ -18,12 +19,18 @@ class ArticlesController extends Controller
         $this->middleware('auth');
     }
     
-    public function index(){
-        $articles = Article::orderBy('id', 'DESC')->paginate(6);//=>toJson();
+    public function index(Request $request){
+      $articles = Article::paginate(4);//->toJson();
+      if ($request->ajax()) {
+       $view = (String)view('articles.list')
+          ->with('articles', $articles)
+          ->render();
+       return response()->json(['view' => $view]);
+      } else {
            return view ('articles.index')
-            ->with('articles', $articles);
-          }
-
+          ->with('articles', $articles);
+       }
+    }
 
     public function create(){
         return view('articles.create');
@@ -51,21 +58,11 @@ class ArticlesController extends Controller
             $add->save();
             $image_location = public_path().'/upload/image/'.$add->id;
             if(!File::exists($image_location)){
-              File::makeDirectory($image_location, $mode=0777, true, true);
+             File::makeDirectory($image_location, $mode=0777, true, true);
             }
             $request->file('photo')->move($image_location, $name);
-
-            //dd($request->all());
-            //$name_db = $photo->getFilename();
-            //$request->save();
-            //Article::create($request->all());
-            //$img = Image::make($image);
-            //$img->save($image_location, $name);            
             Session::flash('notice', 'Success add article');
-
-            //$add->image = $name;
             return redirect ('articles');
-
           } catch(\Exception $e) {
             dd($e);
           }
@@ -105,8 +102,10 @@ class ArticlesController extends Controller
             if($request->file('photo') == ""){
                 $update->photo = $update->photo;
             } else {
+                $image_location = public_path().'/upload/image/'.$id.'/'.$update->photo;
+                unlink($image_location);
                 $photo = $request->file('photo');
-                $image_location = public_path().'/upload/image/';
+                $image_location = public_path().'/upload/image/'.$id;
                 $name = $photo->getClientOriginalName();
                 $request->file('photo')->move($image_location, $name);
                 $update->photo = $name;  
@@ -121,6 +120,11 @@ class ArticlesController extends Controller
 
     public function destroy($id){
         $article = Article::find($id);
+        $image_location = public_path().'/upload/image/'.$id.'/'.$article->photo;
+        unlink($image_location);
+        $dir = public_path().'/upload/image/'.$id;
+        File::deleteDirectory($dir);
+        $article->comments()->delete();
         if ($article->delete()) {
             Session::flash('notice', 'Article deleted');
             return redirect ('articles');

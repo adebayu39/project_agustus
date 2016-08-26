@@ -23,4 +23,17 @@ class CommentsController extends Controller
       }
     }
 
+
+    public function destroy($id)
+    {
+      $comment = Comment::find($id);
+      if ($comment->delete()) {
+            Session::flash('notice', 'Article deleted');
+            return redirect ('articles');
+        } else {
+            Session::flash('error', 'Article fails to delete');
+            return redirect ('articles');
+        }
+    }
+
 }

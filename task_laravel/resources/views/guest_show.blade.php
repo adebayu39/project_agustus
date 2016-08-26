@@ -4,16 +4,15 @@
   <div class="container">
   <div class="row">
   	<div class="col-md-10">
-  	<center><img src="{{ asset('upload/image/'.$article->photo) }}" height="200"><h1>{!! $article->title !!}</h1></center>
+  	<center><img src="{{ asset('upload/image/'.$article->id.'/'.$article->photo) }}" height="200"><h1>{!! $article->title !!}</h1></center>
     <p>{!! $article->content!!}</p>
     <i>By {!! $article->author !!}</i>
 <br><br>
 		<hr>
 		<center><h3>Your Comments Goes Here!</h3></center>
 @foreach ($comment as $comments)
-		<div style="outline: 1px solid #74AD1B;">
-		<h5>{!! $comments->user !!}</h5>
-		<hr>
+		<div style="outline: 1px solid #74AD1B; padding: 25px;">
+		<h4><u><b>{!! $comments->user !!}</b></u></h4>
 		<p>{!! $comments->content !!}</p>
 		</div>
 @endforeach
@@ -34,7 +33,7 @@
 			  <div class="form-group">
 			    {!! Form::label('content', 'Write Comments Here', array('class' => 'col-lg-3 control-label')) !!}
 			    <div class="col-lg-9"> 
-			      {!! Form::textarea('content', null, array('class' => 'form-control', 'rows' => 10, 'autofocus' => 'true')) !!}
+			      {!! Form::textarea('content', null, array('class' => 'form-control', 'rows' => 10)) !!}
 			      {!! $errors->first('content') !!}
 			    </div>
 			    <div class="clear"></div>

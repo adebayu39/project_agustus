@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'Controller@index');
+Route::get('/', 'Controller@tampil');
 
 Route::get('article/{id}', 'Controller@show');
 
@@ -21,4 +21,5 @@ Route::resource('articles', 'ArticlesController');
 
 Route::auth();
 
-//Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index');
+

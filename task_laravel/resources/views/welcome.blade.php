@@ -5,7 +5,7 @@
       <div class="input-group input-group-sm">
           <input type="text" class="form-control" id="keywords" placeholder="Search">
           <span class="input-group-btn">
-          <button id="search" class="btn btn-info btn-flat" type="button">
+          <button id="search-ajax" class="search btn btn-info btn-flat" type="button">
             <i class="glyphicon glyphicon-search"></i>
           </button>
           </span>
@@ -13,38 +13,21 @@
     </div>
   </div>
 
-      <!--<div class="row">-->
-        <div class="container" style="padding-top: 25px;">
-          <div class="content-columns">
-  @foreach ($articles as $article)
-        <div class="boxed">
-            <a href="{{ url('article/'.$article->id) }}">
-                <img src="{{ asset('upload/image/'.$article->photo) }}" width="250">
-            </a>
-            <p><a href="{{ url('articles/'.$article->id) }}">{{substr($article->title, 0, 20)}} </a></p>
-      
-            <p>{{ substr($article->content, 0, 50)}}</p>
-            <i>By {{$article->author}}</i>
-            
-            </div>
-  @endforeach
-  
+{{-- <div id="list-article"> --}}
+  @include("list")
+{{-- </div> --}}
 
-  </div>
-  </div>
-
-{!! $articles->render() !!}
 <script>
-$('#search').on('click', function(){
+$('.search').on('click', function(){
   $.ajax({
-    url : '/article',
+    url : '/',
     type : 'GET',
     dataType : 'json',
     data : {
       'keywords' : $('#keywords').val()
     },
     success : function(data) {
-      $('#articles-list').html(data['view']);
+      $('.list-article').html(data);
     },
     error : function(xhr, status) {
       console.log(xhr.error + " ERROR STATUS : " + status);
@@ -56,5 +39,39 @@ $('#search').on('click', function(){
 });
 </script>
 
+<script>
+
+$(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-XSRF-Token': $('meta[name="_token"]').attr('content')
+                }
+            });
+        });
+
+  $(document).on('click', '.pagination a', function(e) {
+    e.preventDefault();
+    getList($(this).attr('href').split('page=')[1]);
+  });
+
+function getList(page){
+  $.ajax({
+    url : '/?page=' + page,
+    type : 'GET',
+    dataType : 'json',
+    success : function(data) {
+      /*console.log(data['view']);*/
+      $('.list-article').html(data);
+      location.hash = page;
+    },
+    error : function(xhr, status, error) {
+      console.log(xhr.error + "\n ERROR STATUS : " + status + "\n" + error);
+    },
+    complete : function() {
+      alreadyloading = false;
+    }
+  }); 
+}
+</script>
       <!--</div>-->
 @stop

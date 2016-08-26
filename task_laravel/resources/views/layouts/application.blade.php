@@ -3,6 +3,7 @@
 	<meta charset="utf-8">
   <meta httpequiv="XUACompatible" content="IE=edge">
   <meta name="viewport" content="width=devicewidth, initialscale=1">
+  <meta name="_token" content="{{ csrf_token() }}" />
 	<title>Task Laravel</title>
 	
 	<link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
@@ -22,7 +23,7 @@
 <!-- Navigation -->
 @include('shared.head_nav')
 <!-- Content -->
-@include('shared.left_nav')
+{{-- @include('shared.left_nav') --}}
 
 	<div class="container clearfix">
 		<div class="row row-offcanvas row-offcanvas-left">
