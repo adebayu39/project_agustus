@@ -10,7 +10,8 @@
         "laravelcollective/html": "5.2.*",
         "intervention/image": "dev-master",
         "barryvdh/laravel-debugbar": "@dev",
-        "guzzlehttp/guzzle": "~4.0"
+        "guzzlehttp/guzzle": "~4.0",
+        "maatwebsite/excel": "~2.1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

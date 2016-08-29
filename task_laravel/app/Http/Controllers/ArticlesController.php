@@ -20,12 +20,12 @@ class ArticlesController extends Controller
     }
     
     public function index(Request $request){
-      $articles = Article::paginate(4);//->toJson();
+      $articles = Article::paginate(3);//->toJson();
       if ($request->ajax()) {
-       $view = (String)view('articles.list')
+       $view = (String)view('articles._list')
           ->with('articles', $articles)
           ->render();
-       return response()->json(['view' => $view]);
+       return response()->json(['view' => $view ]);
       } else {
            return view ('articles.index')
           ->with('articles', $articles);

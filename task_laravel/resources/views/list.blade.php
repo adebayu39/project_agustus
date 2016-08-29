@@ -1,7 +1,6 @@
 <!--<div class="row">-->
         <div class="container" style="padding-top: 25px;">
           <div class="content-columns">
-            <div class="list-article">
             @foreach ($articles as $article)
               <div class="boxed">
                 <a href="{{ url('article/'.$article->id) }}">
@@ -12,7 +11,6 @@
                 <i>By {{$article->author}}</i>
               </div>
             @endforeach
-            </div>
           </div>
         </div>
 
