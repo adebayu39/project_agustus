@@ -11,8 +11,8 @@
         @include('articles.list')
       </div>
     </div>
-
   </div>
+
 <script>
 $(function() {
 	$.ajaxSetup({
@@ -35,9 +35,9 @@ function get_page(page) {
     type : 'GET',
     dataType : 'json',
     success : function(data) {
+    	//console.log(data['view']);
       $('#list-article').html(data['view']);
       location.hash = page
-    	//console.log(data['view']);
     },
     error : function(xhr, status, error) {
       console.log(xhr.error + "\n ERROR STATUS : " + status + "\n" + error);

@@ -61,6 +61,12 @@ class ArticlesController extends Controller
              File::makeDirectory($image_location, $mode=0777, true, true);
             }
             $request->file('photo')->move($image_location, $name);
+            /*$path = $image_location.'/resize-'.$name;
+            $img = Image::make($photo);
+            $img->resize(200, null, function ($constraint) {
+              $constraint->aspectRatio();
+            });
+            $img->save($path);*/
             Session::flash('notice', 'Success add article');
             return redirect ('articles');
           } catch(\Exception $e) {
@@ -103,7 +109,7 @@ class ArticlesController extends Controller
                 $update->photo = $update->photo;
             } else {
                 $image_location = public_path().'/upload/image/'.$id.'/'.$update->photo;
-                unlink($image_location);
+                //unlink($image_location);
                 $photo = $request->file('photo');
                 $image_location = public_path().'/upload/image/'.$id;
                 $name = $photo->getClientOriginalName();
@@ -121,7 +127,7 @@ class ArticlesController extends Controller
     public function destroy($id){
         $article = Article::find($id);
         $image_location = public_path().'/upload/image/'.$id.'/'.$article->photo;
-        unlink($image_location);
+        //unlink($image_location);
         $dir = public_path().'/upload/image/'.$id;
         File::deleteDirectory($dir);
         $article->comments()->delete();

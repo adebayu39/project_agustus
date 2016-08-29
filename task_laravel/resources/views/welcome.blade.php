@@ -50,9 +50,9 @@ $('#search').on('click', function(){
 <script>
 
 $(function() {
-            $.ajaxSetup({
-                headers: {
-                    'X-XSRF-Token': $('meta[name="_token"]').attr('content')
+  $.ajaxSetup({
+  headers: {
+  'X-XSRF-Token': $('meta[name="_token"]').attr('content')
                 }
             });
         });
