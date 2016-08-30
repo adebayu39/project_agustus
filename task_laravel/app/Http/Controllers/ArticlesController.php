@@ -20,12 +20,21 @@ class ArticlesController extends Controller
     }
     
     public function index(Request $request){
-      $articles = Article::paginate(3);//->toJson();
+      /*$articles = Article::paginate(5);//->toJson();
       if ($request->ajax()) {
        $view = (String)view('articles._list')
           ->with('articles', $articles)
           ->render();
-       return response()->json(['view' => $view ]);
+       return response()->json(['view' => $view ]);*/
+      $articles = Article::paginate(5);
+      if ($request->ajax()) {
+      $articles = Article::orderBy('id', $request->direction)
+       ->paginate(5);
+      $request->direction == 'asc' ? $direction = 'desc' : $direction = 'asc';
+      $view = (String)view('articles._list')
+       ->with('articles', $articles)
+       ->render();
+      return response()->json(['view' => $view, 'direction' => $direction]);
       } else {
            return view ('articles.index')
           ->with('articles', $articles);

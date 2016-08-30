@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="/assets/css/normalize.css" />
 	<link rel="stylesheet" href="/assets/css/style.css" />
+	<link rel="stylesheet" href="/assets/css/font-awesome.min.css" />
 	<!--<link rel="stylesheet" href="/assets/css/masonry-docs.css" />-->
 
 	
@@ -18,6 +19,7 @@
 
 	<script src="/assets/js/jquery-3.1.0.min.js"></script>
 	<script src="/assets/js/bootstrap.min.js"></script>
+	{{-- <script src="/assets/js/sort.js"></script> --}}
 	<script src="/assets/js/custom.js"></script>
 
 <!-- Navigation -->

@@ -160,6 +160,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Collective\Html\HtmlServiceProvider::class,
+        Collective\Bus\BusServiceProvider::class,
 
     ],
 

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ff218676a492aaa42eb4a4ade8535542",
-    "content-hash": "a809cf3a4b76fff0b339334911d97afe",
+    "hash": "cc801aac7c5e5da75c7979e8db81c5c4",
+    "content-hash": "9bb17e1d0e82fc260ab272ae2af8fc68",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -727,6 +727,51 @@
                 "laravel"
             ],
             "time": "2016-08-26 11:44:52"
+        },
+        {
+            "name": "laravelcollective/bus",
+            "version": "v5.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LaravelCollective/bus.git",
+                "reference": "e48b4d44d49f820e1b85ff16b9402e01c770c83a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LaravelCollective/bus/zipball/e48b4d44d49f820e1b85ff16b9402e01c770c83a",
+                "reference": "e48b4d44d49f820e1b85ff16b9402e01c770c83a",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/container": "5.2.*",
+                "illuminate/contracts": "5.2.*",
+                "illuminate/pipeline": "5.2.*",
+                "illuminate/support": "5.2.*",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Collective\\Bus\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                }
+            ],
+            "description": "The Laravel Bus (5.1) package for use in Laravel 5.2.",
+            "homepage": "http://laravelcollective.com",
+            "time": "2015-12-23 07:43:33"
         },
         {
             "name": "laravelcollective/html",
