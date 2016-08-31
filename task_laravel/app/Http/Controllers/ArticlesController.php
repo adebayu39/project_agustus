@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Article;
 use App\Comment;
-use Validator, Session, Input, File, Image, Storage;
+use Validator, Session, Input, File, Image, Storage, Excel;
 use App\Http\Controllers\Redirect;
 use Intervention\Image\ImageManager;
 use App\Repositories\ImageRepository;
@@ -148,4 +148,13 @@ class ArticlesController extends Controller
             return redirect ('articles');
         }
     }
+
+
+
+
+
+
+
+
+    
 }
