@@ -23,3 +23,6 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('/export', 'ExcelController@export');
+
+Route::get('/import', 'ExcelController@import');

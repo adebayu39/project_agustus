@@ -89,6 +89,7 @@ class ArticlesController extends Controller
 
     public function show($id){
         $article = Article::find($id);
+        //dd($article);
         $comments = Article::find($id)->comments;
         return view('articles.show')
             ->with('article', $article)
@@ -156,5 +157,5 @@ class ArticlesController extends Controller
 
 
 
-    
+
 }
