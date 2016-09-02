@@ -12,14 +12,14 @@
       </div>
     </div>
     <div class="panel-footer"> 
-      <table>
+      <table class="col-lg-12">
       <tr>
-      <td padding="50px">{{ link_to('export', 'Export to Excel file', array('class' => 'btn btn-warning')) }}</td>
-<td padding-left="100px">
+      <td padding="50px" class="col-sm-3">{{ link_to('export', 'Export to Excel file', array('class' => 'btn btn-warning')) }}</td>
+<td class="col-md-5">
 {!! Form::open(['url' => 'articles', 'class' => 'form-horizontal', 'role' => 'form', 'enctype' => 'multipart/form-data', 'method' => 'POST']) !!}
 
   <div class="form-group">
-    {!! Form::label('import', 'Import File .csv', array('class' => 'col-lg-3 control-label')) !!}
+    {!! Form::label('import', 'Import File', array('class' => 'col-lg-3 control-label')) !!}
     <div class="col-lg-9">
       {!! Form::file('article', null, array('class' => 'form-control')) !!}
       {!! $errors->first('article') !!}
