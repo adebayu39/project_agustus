@@ -25,4 +25,5 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/export', 'ExcelController@export');
 
-Route::get('/import', 'ExcelController@import');
+Route::post('/postImport', 'ExcelController@postImport');
+Route::get('/getImport', 'ExcelController@getImport');

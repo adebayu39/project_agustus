@@ -38,17 +38,18 @@ class ExcelController extends Controller
        }
     }
 
-
-    public function import() {
-        Excel::load(Input::file('article'), function($reader){
-
-            foreach ($reader->toArray() as $sheet) {
-                Article::firstOrCreate($sheet);
-            };
-        });
-        dd(Input::file('article'));
-            return redirect ('articles');
+    public function getImport(){
+        return view('articles.import');
     }
+
+    public function postImport() {
+        Excel::load(Input::file('article'),function($reader){
+            $reader->each(function($sheet){
+                Article::firstOrCreate($sheet->toArray());
+            });
+        });
+            return redirect ('articles');
+        }
 
 
 

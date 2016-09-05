@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Article;
 use App\Comment;
-use Validator, Session, Input, File, Image, Storage, Excel;
+use Validator, Session, Input, File, Image, Storage, Excel, DB;
 use App\Http\Controllers\Redirect;
 use Intervention\Image\ImageManager;
 use App\Repositories\ImageRepository;
@@ -150,11 +150,9 @@ class ArticlesController extends Controller
         }
     }
 
-
-
-
-
-
+    public function deleteAll(){
+      DB::table('article', 'comments')->delete();
+    }
 
 
 
